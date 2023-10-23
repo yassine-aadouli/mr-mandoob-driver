@@ -80,13 +80,25 @@ class _ContainerScreen extends State<ContainerScreen> {
       if (value != null) {
         currencyModel = value;
       } else {
-        currencyModel = CurrencyModel(id: "", code: "USD", decimal: 2, isactive: true, name: "US Dollar", symbol: "\$", symbolatright: false);
+        currencyModel = CurrencyModel(
+            id: "",
+            code: "USD",
+            decimal: 2,
+            isactive: true,
+            name: "US Dollar",
+            symbol: "\$",
+            symbolatright: false);
       }
       setState(() {});
     });
-    await FireStoreUtils.firestore.collection(Setting).doc("DriverNearBy").get().then((value) {
+    await FireStoreUtils.firestore
+        .collection(Setting)
+        .doc("DriverNearBy")
+        .get()
+        .then((value) {
       setState(() {
-        minimumDepositToRideAccept = value.data()!['minimumDepositToRideAccept'];
+        minimumDepositToRideAccept =
+            value.data()!['minimumDepositToRideAccept'];
         driverLocationUpdate = value.data()!['driverLocationUpdate'];
         singleOrderReceive = value.data()!['singleOrderReceive'];
         mapType = value.data()!['mapType'];
@@ -133,14 +145,19 @@ class _ContainerScreen extends State<ContainerScreen> {
     PermissionStatus permissionStatus = await location.hasPermission();
     if (permissionStatus == PermissionStatus.granted) {
       location.enableBackgroundMode(enable: true);
-      location.changeSettings(accuracy: LocationAccuracy.high, distanceFilter: double.parse(driverLocationUpdate));
+      location.changeSettings(
+          accuracy: LocationAccuracy.high,
+          distanceFilter: double.parse(driverLocationUpdate));
       location.onLocationChanged.listen((locationData) async {
         locationDataFinal = locationData;
-        await FireStoreUtils.getCurrentUser(MyAppState.currentUser!.userID).then((value) {
+        await FireStoreUtils.getCurrentUser(MyAppState.currentUser!.userID)
+            .then((value) {
           if (value != null) {
             User driverUserModel = value;
             if (driverUserModel.isActive == true) {
-              driverUserModel.location = UserLocation(latitude: locationData.latitude ?? 0.0, longitude: locationData.longitude ?? 0.0);
+              driverUserModel.location = UserLocation(
+                  latitude: locationData.latitude ?? 0.0,
+                  longitude: locationData.longitude ?? 0.0);
               driverUserModel.rotation = locationData.heading;
               FireStoreUtils.updateCurrentUser(driverUserModel);
             }
@@ -151,14 +168,19 @@ class _ContainerScreen extends State<ContainerScreen> {
       location.requestPermission().then((permissionStatus) {
         if (permissionStatus == PermissionStatus.granted) {
           location.enableBackgroundMode(enable: true);
-          location.changeSettings(accuracy: LocationAccuracy.high, distanceFilter: double.parse(driverLocationUpdate));
+          location.changeSettings(
+              accuracy: LocationAccuracy.high,
+              distanceFilter: double.parse(driverLocationUpdate));
           location.onLocationChanged.listen((locationData) async {
             locationDataFinal = locationData;
-            await FireStoreUtils.getCurrentUser(MyAppState.currentUser!.userID).then((value) {
+            await FireStoreUtils.getCurrentUser(MyAppState.currentUser!.userID)
+                .then((value) {
               if (value != null) {
                 User driverUserModel = value;
                 if (driverUserModel.isActive == true) {
-                  driverUserModel.location = UserLocation(latitude: locationData.latitude ?? 0.0, longitude: locationData.longitude ?? 0.0);
+                  driverUserModel.location = UserLocation(
+                      latitude: locationData.latitude ?? 0.0,
+                      longitude: locationData.longitude ?? 0.0);
                   driverUserModel.rotation = locationData.heading;
                   FireStoreUtils.updateCurrentUser(driverUserModel);
                 }
@@ -198,7 +220,9 @@ class _ContainerScreen extends State<ContainerScreen> {
           builder: (context, user, _) {
             return Scaffold(
               drawer: Drawer(
-                backgroundColor: isDarkMode(context) ? Color(DARK_VIEWBG_COLOR) : Colors.white,
+                backgroundColor: isDarkMode(context)
+                    ? Color(DARK_VIEWBG_COLOR)
+                    : Colors.white,
                 child: ListView(
                   padding: EdgeInsets.zero,
                   children: [
@@ -209,7 +233,8 @@ class _ContainerScreen extends State<ContainerScreen> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
-                            displayCircleImage(user.profilePictureURL, 60, false),
+                            displayCircleImage(
+                                user.profilePictureURL, 60, false),
                             Padding(
                               padding: const EdgeInsets.only(top: 8.0),
                               child: Text(
@@ -222,7 +247,8 @@ class _ContainerScreen extends State<ContainerScreen> {
                               style: TextStyle(color: Colors.white),
                             ),
                             SwitchListTile(
-                              visualDensity: VisualDensity(horizontal: 0, vertical: -4),
+                              visualDensity:
+                                  VisualDensity(horizontal: 0, vertical: -4),
                               contentPadding: EdgeInsets.zero,
                               title: Text(
                                 "Online",
@@ -234,8 +260,10 @@ class _ContainerScreen extends State<ContainerScreen> {
                                 setState(() {
                                   user.isActive = value;
                                 });
-                                user.inProgressOrderID = MyAppState.currentUser!.inProgressOrderID;
-                                user.orderRequestData = MyAppState.currentUser!.orderRequestData;
+                                user.inProgressOrderID =
+                                    MyAppState.currentUser!.inProgressOrderID;
+                                user.orderRequestData =
+                                    MyAppState.currentUser!.orderRequestData;
                                 if (user.isActive == true) {
                                   updateCurrentLocation();
                                 }
@@ -356,14 +384,16 @@ class _ContainerScreen extends State<ContainerScreen> {
                       style: ListTileStyle.drawer,
                       selectedColor: Color(COLOR_PRIMARY),
                       child: ListTile(
-                        selected: _drawerSelection == DrawerSelection.chooseLanguage,
+                        selected:
+                            _drawerSelection == DrawerSelection.chooseLanguage,
                         leading: Icon(
                           Icons.language,
-                          color: _drawerSelection == DrawerSelection.chooseLanguage
-                              ? Color(COLOR_PRIMARY)
-                              : isDarkMode(context)
-                                  ? Colors.grey.shade200
-                                  : Colors.grey.shade600,
+                          color:
+                              _drawerSelection == DrawerSelection.chooseLanguage
+                                  ? Color(COLOR_PRIMARY)
+                                  : isDarkMode(context)
+                                      ? Colors.grey.shade200
+                                      : Colors.grey.shade600,
                         ),
                         title: const Text('Language').tr(),
                         onTap: () {
@@ -404,7 +434,8 @@ class _ContainerScreen extends State<ContainerScreen> {
                       style: ListTileStyle.drawer,
                       selectedColor: Color(COLOR_PRIMARY),
                       child: ListTile(
-                        selected: _drawerSelection == DrawerSelection.termsCondition,
+                        selected:
+                            _drawerSelection == DrawerSelection.termsCondition,
                         leading: const Icon(Icons.policy),
                         title: const Text('Terms and Condition').tr(),
                         onTap: () async {
@@ -416,7 +447,8 @@ class _ContainerScreen extends State<ContainerScreen> {
                       style: ListTileStyle.drawer,
                       selectedColor: Color(COLOR_PRIMARY),
                       child: ListTile(
-                        selected: _drawerSelection == DrawerSelection.privacyPolicy,
+                        selected:
+                            _drawerSelection == DrawerSelection.privacyPolicy,
                         leading: const Icon(Icons.privacy_tip),
                         title: const Text('Privacy policy').tr(),
                         onTap: () async {
@@ -450,8 +482,11 @@ class _ContainerScreen extends State<ContainerScreen> {
                 iconTheme: IconThemeData(
                   color: isDarkMode(context) ? Colors.white : Colors.black,
                 ),
-                centerTitle: _drawerSelection == DrawerSelection.Wallet ? true : false,
-                backgroundColor: isDarkMode(context) ? Color(DARK_VIEWBG_COLOR) : Colors.white,
+                centerTitle:
+                    _drawerSelection == DrawerSelection.Wallet ? true : false,
+                backgroundColor: isDarkMode(context)
+                    ? Color(DARK_VIEWBG_COLOR)
+                    : Colors.white,
                 title: Text(
                   _appBarTitle,
                   style: TextStyle(

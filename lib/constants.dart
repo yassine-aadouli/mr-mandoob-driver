@@ -40,7 +40,7 @@ const MINUTE_MILLIS = 60 * SECOND_MILLIS;
 const HOUR_MILLIS = 60 * MINUTE_MILLIS;
 const SERVER_KEY =
     'AAAAouSYOCU:APA91bGwO6VeQ6DPfOvFFIkak_Bj_eQ6_7VHzoSbaGen_aHGFZ7kaX-2uZygKu3E8JzoBmVhnmFZD1aXMyOO617dpEtSex7ZFADzb-ExvzLsvyqvwoaQQZPkSaG-rjWeEuh85efkr4b2';
-String GOOGLE_API_KEY = 'AIzaSyD2ruyLlgYp4GlVdkbGlLe5Pp7SE875cVY';
+String GOOGLE_API_KEY = 'AIzaSyCRKL2f6_94FRDODDdgvOTl7Si3ZJn6NLU';
 
 bool isRazorPayEnabled = false;
 bool isRazorPaySandboxEnabled = false;
@@ -50,7 +50,7 @@ String razorpaySecret = "";
 String placeholderImage =
     'https://firebasestorage.googleapis.com/v0/b/foodies-3c1d9.appspot.com/o/images%2Fplace_holder.png?alt=media&token=f391844e-0f04-44ed-bf37-e6a1c7d91020';
 
-const GlobalURL = "Replace with your web";
+const GlobalURL = "https://mr-mandoob.com/admin/";
 
 const ORDER_STATUS_PLACED = 'Order Placed';
 const ORDER_STATUS_ACCEPTED = 'Order Accepted';
