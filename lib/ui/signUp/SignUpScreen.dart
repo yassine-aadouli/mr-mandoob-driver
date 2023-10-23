@@ -26,7 +26,14 @@ class _SignUpState extends State<SignUpScreen> {
   TextEditingController _passwordController = TextEditingController();
   GlobalKey<FormState> _key = GlobalKey();
   bool isUserImage = true;
-  String? firstName, lastName, carName, carPlate, email, mobile, password, confirmPassword;
+  String? firstName,
+      lastName,
+      carName,
+      carPlate,
+      email,
+      mobile,
+      password,
+      confirmPassword;
   AutovalidateMode _validate = AutovalidateMode.disabled;
 
   @override
@@ -36,11 +43,13 @@ class _SignUpState extends State<SignUpScreen> {
     }
 
     return Scaffold(
-      backgroundColor: isDarkMode(context) ? Color(DARK_VIEWBG_COLOR) : Colors.white,
+      backgroundColor:
+          isDarkMode(context) ? Color(DARK_VIEWBG_COLOR) : Colors.white,
       appBar: AppBar(
         elevation: 0.0,
         backgroundColor: Colors.transparent,
-        iconTheme: IconThemeData(color: isDarkMode(context) ? Colors.white : Colors.black),
+        iconTheme: IconThemeData(
+            color: isDarkMode(context) ? Colors.white : Colors.black),
       ),
       body: SingleChildScrollView(
         child: Container(
@@ -84,10 +93,13 @@ class _SignUpState extends State<SignUpScreen> {
           isDefaultAction: false,
           onPressed: () async {
             Navigator.pop(context);
-            XFile? image = await _imagePicker.pickImage(source: ImageSource.gallery);
+            XFile? image =
+                await _imagePicker.pickImage(source: ImageSource.gallery);
             if (image != null)
               setState(() {
-                isUserImage ? _image = File(image.path) : _carImage = File(image.path);
+                isUserImage
+                    ? _image = File(image.path)
+                    : _carImage = File(image.path);
               });
           },
         ),
@@ -96,10 +108,13 @@ class _SignUpState extends State<SignUpScreen> {
           isDestructiveAction: false,
           onPressed: () async {
             Navigator.pop(context);
-            XFile? image = await _imagePicker.pickImage(source: ImageSource.camera);
+            XFile? image =
+                await _imagePicker.pickImage(source: ImageSource.camera);
             if (image != null)
               setState(() {
-                isUserImage ? _image = File(image.path) : _carImage = File(image.path);
+                isUserImage
+                    ? _image = File(image.path)
+                    : _carImage = File(image.path);
               });
           },
         ),
@@ -128,13 +143,19 @@ class _SignUpState extends State<SignUpScreen> {
     return Column(
       children: <Widget>[
         Align(
-            alignment: Directionality.of(context) == TextDirection.ltr ? Alignment.topLeft : Alignment.topRight,
+            alignment: Directionality.of(context) == TextDirection.ltr
+                ? Alignment.topLeft
+                : Alignment.topRight,
             child: Text(
               'Create new account',
-              style: TextStyle(color: Color(COLOR_PRIMARY), fontWeight: FontWeight.bold, fontSize: 25.0),
+              style: TextStyle(
+                  color: Color(COLOR_PRIMARY),
+                  fontWeight: FontWeight.bold,
+                  fontSize: 25.0),
             ).tr()),
         Padding(
-          padding: const EdgeInsets.only(left: 8.0, top: 32, right: 8, bottom: 8),
+          padding:
+              const EdgeInsets.only(left: 8.0, top: 32, right: 8, bottom: 8),
           child: SizedBox(
             height: 200,
             child: Row(
@@ -170,7 +191,8 @@ class _SignUpState extends State<SignUpScreen> {
                         backgroundColor: Color(COLOR_ACCENT),
                         child: Icon(
                           CupertinoIcons.camera,
-                          color: isDarkMode(context) ? Colors.black : Colors.white,
+                          color:
+                              isDarkMode(context) ? Colors.black : Colors.white,
                         ),
                         mini: true,
                         onPressed: () => _onCameraClick(true),
@@ -208,7 +230,8 @@ class _SignUpState extends State<SignUpScreen> {
                         backgroundColor: Color(COLOR_ACCENT),
                         child: Icon(
                           CupertinoIcons.camera,
-                          color: isDarkMode(context) ? Colors.black : Colors.white,
+                          color:
+                              isDarkMode(context) ? Colors.black : Colors.white,
                         ),
                         mini: true,
                         onPressed: () => _onCameraClick(false),
@@ -233,16 +256,22 @@ class _SignUpState extends State<SignUpScreen> {
               },
               textInputAction: TextInputAction.next,
               decoration: InputDecoration(
-                contentPadding: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+                contentPadding:
+                    EdgeInsets.symmetric(vertical: 8, horizontal: 16),
                 fillColor: Colors.white,
                 hintText: easyLocal.tr('First Name'),
-                focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(25.0), borderSide: BorderSide(color: Color(COLOR_PRIMARY), width: 2.0)),
+                focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(25.0),
+                    borderSide:
+                        BorderSide(color: Color(COLOR_PRIMARY), width: 2.0)),
                 errorBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Theme.of(context).colorScheme.error),
+                  borderSide:
+                      BorderSide(color: Theme.of(context).colorScheme.error),
                   borderRadius: BorderRadius.circular(25.0),
                 ),
                 focusedErrorBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Theme.of(context).colorScheme.error),
+                  borderSide:
+                      BorderSide(color: Theme.of(context).colorScheme.error),
                   borderRadius: BorderRadius.circular(25.0),
                 ),
                 enabledBorder: OutlineInputBorder(
@@ -266,16 +295,22 @@ class _SignUpState extends State<SignUpScreen> {
               },
               textInputAction: TextInputAction.next,
               decoration: InputDecoration(
-                contentPadding: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+                contentPadding:
+                    EdgeInsets.symmetric(vertical: 8, horizontal: 16),
                 fillColor: Colors.white,
                 hintText: 'Last Name'.tr(),
-                focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(25.0), borderSide: BorderSide(color: Color(COLOR_PRIMARY), width: 2.0)),
+                focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(25.0),
+                    borderSide:
+                        BorderSide(color: Color(COLOR_PRIMARY), width: 2.0)),
                 errorBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Theme.of(context).colorScheme.error),
+                  borderSide:
+                      BorderSide(color: Theme.of(context).colorScheme.error),
                   borderRadius: BorderRadius.circular(25.0),
                 ),
                 focusedErrorBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Theme.of(context).colorScheme.error),
+                  borderSide:
+                      BorderSide(color: Theme.of(context).colorScheme.error),
                   borderRadius: BorderRadius.circular(25.0),
                 ),
                 enabledBorder: OutlineInputBorder(
@@ -299,16 +334,22 @@ class _SignUpState extends State<SignUpScreen> {
               },
               textInputAction: TextInputAction.next,
               decoration: InputDecoration(
-                contentPadding: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+                contentPadding:
+                    EdgeInsets.symmetric(vertical: 8, horizontal: 16),
                 fillColor: Colors.white,
                 hintText: 'Car Model'.tr(),
-                focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(25.0), borderSide: BorderSide(color: Color(COLOR_PRIMARY), width: 2.0)),
+                focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(25.0),
+                    borderSide:
+                        BorderSide(color: Color(COLOR_PRIMARY), width: 2.0)),
                 errorBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Theme.of(context).colorScheme.error),
+                  borderSide:
+                      BorderSide(color: Theme.of(context).colorScheme.error),
                   borderRadius: BorderRadius.circular(25.0),
                 ),
                 focusedErrorBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Theme.of(context).colorScheme.error),
+                  borderSide:
+                      BorderSide(color: Theme.of(context).colorScheme.error),
                   borderRadius: BorderRadius.circular(25.0),
                 ),
                 enabledBorder: OutlineInputBorder(
@@ -332,16 +373,22 @@ class _SignUpState extends State<SignUpScreen> {
               },
               textInputAction: TextInputAction.next,
               decoration: InputDecoration(
-                contentPadding: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+                contentPadding:
+                    EdgeInsets.symmetric(vertical: 8, horizontal: 16),
                 fillColor: Colors.white,
                 hintText: 'Car Plate'.tr(),
-                focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(25.0), borderSide: BorderSide(color: Color(COLOR_PRIMARY), width: 2.0)),
+                focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(25.0),
+                    borderSide:
+                        BorderSide(color: Color(COLOR_PRIMARY), width: 2.0)),
                 errorBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Theme.of(context).colorScheme.error),
+                  borderSide:
+                      BorderSide(color: Theme.of(context).colorScheme.error),
                   borderRadius: BorderRadius.circular(25.0),
                 ),
                 focusedErrorBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Theme.of(context).colorScheme.error),
+                  borderSide:
+                      BorderSide(color: Theme.of(context).colorScheme.error),
                   borderRadius: BorderRadius.circular(25.0),
                 ),
                 enabledBorder: OutlineInputBorder(
@@ -366,16 +413,22 @@ class _SignUpState extends State<SignUpScreen> {
                 email = val;
               },
               decoration: InputDecoration(
-                contentPadding: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+                contentPadding:
+                    EdgeInsets.symmetric(vertical: 8, horizontal: 16),
                 fillColor: Colors.white,
                 hintText: 'Email Address'.tr(),
-                focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(25.0), borderSide: BorderSide(color: Color(COLOR_PRIMARY), width: 2.0)),
+                focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(25.0),
+                    borderSide:
+                        BorderSide(color: Color(COLOR_PRIMARY), width: 2.0)),
                 errorBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Theme.of(context).colorScheme.error),
+                  borderSide:
+                      BorderSide(color: Theme.of(context).colorScheme.error),
                   borderRadius: BorderRadius.circular(25.0),
                 ),
                 focusedErrorBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Theme.of(context).colorScheme.error),
+                  borderSide:
+                      BorderSide(color: Theme.of(context).colorScheme.error),
                   borderRadius: BorderRadius.circular(25.0),
                 ),
                 enabledBorder: OutlineInputBorder(
@@ -390,9 +443,13 @@ class _SignUpState extends State<SignUpScreen> {
           padding: const EdgeInsets.only(top: 16.0, right: 8.0, left: 8.0),
           child: Container(
             padding: const EdgeInsets.symmetric(horizontal: 16),
-            decoration: BoxDecoration(borderRadius: BorderRadius.circular(25), shape: BoxShape.rectangle, border: Border.all(color: Colors.grey.shade200)),
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(25),
+                shape: BoxShape.rectangle,
+                border: Border.all(color: Colors.grey.shade200)),
             child: InternationalPhoneNumberInput(
-              onInputChanged: (PhoneNumber number) => mobile = number.phoneNumber,
+              onInputChanged: (PhoneNumber number) =>
+                  mobile = number.phoneNumber,
               ignoreBlank: true,
               autoValidateMode: AutovalidateMode.onUserInteraction,
               inputDecoration: InputDecoration(
@@ -408,8 +465,9 @@ class _SignUpState extends State<SignUpScreen> {
               inputBorder: const OutlineInputBorder(
                 borderSide: BorderSide.none,
               ),
-              initialValue: PhoneNumber(isoCode: 'US'),
-              selectorConfig: const SelectorConfig(selectorType: PhoneInputSelectorType.DIALOG),
+              initialValue: PhoneNumber(isoCode: 'JO'),
+              selectorConfig: const SelectorConfig(
+                  selectorType: PhoneInputSelectorType.DIALOG),
             ),
           ),
         ),
@@ -429,16 +487,22 @@ class _SignUpState extends State<SignUpScreen> {
               style: TextStyle(fontSize: 18.0),
               cursorColor: Color(COLOR_PRIMARY),
               decoration: InputDecoration(
-                contentPadding: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+                contentPadding:
+                    EdgeInsets.symmetric(vertical: 8, horizontal: 16),
                 fillColor: Colors.white,
                 hintText: 'Password'.tr(),
-                focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(25.0), borderSide: BorderSide(color: Color(COLOR_PRIMARY), width: 2.0)),
+                focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(25.0),
+                    borderSide:
+                        BorderSide(color: Color(COLOR_PRIMARY), width: 2.0)),
                 errorBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Theme.of(context).colorScheme.error),
+                  borderSide:
+                      BorderSide(color: Theme.of(context).colorScheme.error),
                   borderRadius: BorderRadius.circular(25.0),
                 ),
                 focusedErrorBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Theme.of(context).colorScheme.error),
+                  borderSide:
+                      BorderSide(color: Theme.of(context).colorScheme.error),
                   borderRadius: BorderRadius.circular(25.0),
                 ),
                 enabledBorder: OutlineInputBorder(
@@ -458,23 +522,30 @@ class _SignUpState extends State<SignUpScreen> {
               textInputAction: TextInputAction.done,
               onFieldSubmitted: (_) => _signUp(),
               obscureText: true,
-              validator: (val) => validateConfirmPassword(_passwordController.text, val),
+              validator: (val) =>
+                  validateConfirmPassword(_passwordController.text, val),
               onSaved: (String? val) {
                 confirmPassword = val;
               },
               style: TextStyle(fontSize: 18.0),
               cursorColor: Color(COLOR_PRIMARY),
               decoration: InputDecoration(
-                contentPadding: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+                contentPadding:
+                    EdgeInsets.symmetric(vertical: 8, horizontal: 16),
                 fillColor: Colors.white,
                 hintText: 'Confirm Password'.tr(),
-                focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(25.0), borderSide: BorderSide(color: Color(COLOR_PRIMARY), width: 2.0)),
+                focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(25.0),
+                    borderSide:
+                        BorderSide(color: Color(COLOR_PRIMARY), width: 2.0)),
                 errorBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Theme.of(context).colorScheme.error),
+                  borderSide:
+                      BorderSide(color: Theme.of(context).colorScheme.error),
                   borderRadius: BorderRadius.circular(25.0),
                 ),
                 focusedErrorBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Theme.of(context).colorScheme.error),
+                  borderSide:
+                      BorderSide(color: Theme.of(context).colorScheme.error),
                   borderRadius: BorderRadius.circular(25.0),
                 ),
                 enabledBorder: OutlineInputBorder(
@@ -517,7 +588,8 @@ class _SignUpState extends State<SignUpScreen> {
           child: Center(
             child: Text(
               'OR',
-              style: TextStyle(color: isDarkMode(context) ? Colors.white : Colors.black),
+              style: TextStyle(
+                  color: isDarkMode(context) ? Colors.white : Colors.black),
             ).tr(),
           ),
         ),
@@ -530,17 +602,25 @@ class _SignUpState extends State<SignUpScreen> {
             child: Container(
                 alignment: Alignment.bottomCenter,
                 padding: EdgeInsets.all(10),
-                decoration: BoxDecoration(borderRadius: BorderRadius.circular(25), border: Border.all(color: Color(COLOR_PRIMARY), width: 1)),
-                child: Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-                  Icon(
-                    Icons.phone,
-                    color: Color(COLOR_PRIMARY),
-                  ),
-                  Text(
-                    'signUpWithPhoneNumber'.tr(),
-                    style: TextStyle(color: Color(COLOR_PRIMARY), fontWeight: FontWeight.bold, fontSize: 15, letterSpacing: 1),
-                  ),
-                ])),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(25),
+                    border: Border.all(color: Color(COLOR_PRIMARY), width: 1)),
+                child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Icon(
+                        Icons.phone,
+                        color: Color(COLOR_PRIMARY),
+                      ),
+                      Text(
+                        'signUpWithPhoneNumber'.tr(),
+                        style: TextStyle(
+                            color: Color(COLOR_PRIMARY),
+                            fontWeight: FontWeight.bold,
+                            fontSize: 15,
+                            letterSpacing: 1),
+                      ),
+                    ])),
           ),
         )
       ],
@@ -561,8 +641,18 @@ class _SignUpState extends State<SignUpScreen> {
   }
 
   _signUpWithEmailAndPassword() async {
-    await showProgress(context, 'Creating new account, Please wait...'.tr(), false);
-    dynamic result = await FireStoreUtils.firebaseSignUpWithEmailAndPassword(email!.trim(), password!.trim(), _image, _carImage, carName!, carPlate!, firstName!, lastName!, mobile!);
+    await showProgress(
+        context, 'Creating new account, Please wait...'.tr(), false);
+    dynamic result = await FireStoreUtils.firebaseSignUpWithEmailAndPassword(
+        email!.trim(),
+        password!.trim(),
+        _image,
+        _carImage,
+        carName!,
+        carPlate!,
+        firstName!,
+        lastName!,
+        mobile!);
     await hideProgress();
     if (result != null && result is User) {
       MyAppState.currentUser = result;
