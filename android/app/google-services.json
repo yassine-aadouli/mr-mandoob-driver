@@ -1,97 +1,152 @@
 {
-  "project_info": {
-    "project_number": "699619883045",
-    "firebase_url": "https://mr-mandoub-default-rtdb.firebaseio.com",
-    "project_id": "mr-mandoub",
-    "storage_bucket": "mr-mandoub.appspot.com"
-  },
-  "client": [
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:699619883045:android:1a686e5c31dea20b1d67cc",
-        "android_client_info": {
-          "package_name": "com.justclick.mrmandoob"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "699619883045-03odqje39aqrcgtqbt6hio2u4m843ndd.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyCfjRJPFs5titgFdVDVB37q6GO5pPhX1Lc"
-        },
-        {
-          "current_key": "AIzaSyD2ruyLlgYp4GlVdkbGlLe5Pp7SE875cVY"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "699619883045-03odqje39aqrcgtqbt6hio2u4m843ndd.apps.googleusercontent.com",
-              "client_type": 3
-            },
-            {
-              "client_id": "699619883045-33a2o9o7rlpj9fi9skltfrr3chfks83k.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "com.foodies.restaurant.ios"
-              }
-            }
-          ]
-        }
-      }
+    "project_info": {
+      "project_number": "699619883045",
+      "firebase_url": "https://mr-mandoub-default-rtdb.firebaseio.com",
+      "project_id": "mr-mandoub",
+      "storage_bucket": "mr-mandoub.appspot.com"
     },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:699619883045:android:0f9f57eb21be93bf1d67cc",
-        "android_client_info": {
-          "package_name": "com.justclick.mrmandoob.driver"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "699619883045-71nmeeiv0sb0cdg7g84vibgod3468f1c.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.justclick.mrmandoob.driver",
-            "certificate_hash": "07f72ab5f9e73632ed01f89c254a446b864075d0"
+    "client": [
+      {
+        "client_info": {
+          "mobilesdk_app_id": "1:699619883045:android:1a686e5c31dea20b1d67cc",
+          "android_client_info": {
+            "package_name": "com.justclick.mrmandoob"
           }
         },
-        {
-          "client_id": "699619883045-03odqje39aqrcgtqbt6hio2u4m843ndd.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyCfjRJPFs5titgFdVDVB37q6GO5pPhX1Lc"
-        },
-        {
-          "current_key": "AIzaSyD2ruyLlgYp4GlVdkbGlLe5Pp7SE875cVY"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "699619883045-03odqje39aqrcgtqbt6hio2u4m843ndd.apps.googleusercontent.com",
-              "client_type": 3
-            },
-            {
-              "client_id": "699619883045-33a2o9o7rlpj9fi9skltfrr3chfks83k.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "com.foodies.restaurant.ios"
-              }
+        "oauth_client": [
+          {
+            "client_id": "699619883045-qkgigfq7ho5jn78jtsabaqurhad8bio3.apps.googleusercontent.com",
+            "client_type": 1,
+            "android_info": {
+              "package_name": "com.justclick.mrmandoob",
+              "certificate_hash": "07f72ab5f9e73632ed01f89c254a446b864075d0"
             }
-          ]
+          },
+          {
+            "client_id": "699619883045-03odqje39aqrcgtqbt6hio2u4m843ndd.apps.googleusercontent.com",
+            "client_type": 3
+          }
+        ],
+        "api_key": [
+          {
+            "current_key": "AIzaSyCfjRJPFs5titgFdVDVB37q6GO5pPhX1Lc"
+          },
+          {
+            "current_key": "AIzaSyD2ruyLlgYp4GlVdkbGlLe5Pp7SE875cVY"
+          }
+        ],
+        "services": {
+          "appinvite_service": {
+            "other_platform_oauth_client": [
+              {
+                "client_id": "699619883045-03odqje39aqrcgtqbt6hio2u4m843ndd.apps.googleusercontent.com",
+                "client_type": 3
+              },
+              {
+                "client_id": "699619883045-33a2o9o7rlpj9fi9skltfrr3chfks83k.apps.googleusercontent.com",
+                "client_type": 2,
+                "ios_info": {
+                  "bundle_id": "com.foodies.restaurant.ios"
+                }
+              }
+            ]
+          }
+        }
+      },
+      {
+        "client_info": {
+          "mobilesdk_app_id": "1:699619883045:android:0f9f57eb21be93bf1d67cc",
+          "android_client_info": {
+            "package_name": "com.justclick.mrmandoob.driver"
+          }
+        },
+        "oauth_client": [
+          {
+            "client_id": "699619883045-71nmeeiv0sb0cdg7g84vibgod3468f1c.apps.googleusercontent.com",
+            "client_type": 1,
+            "android_info": {
+              "package_name": "com.justclick.mrmandoob.driver",
+              "certificate_hash": "07f72ab5f9e73632ed01f89c254a446b864075d0"
+            }
+          },
+          {
+            "client_id": "699619883045-03odqje39aqrcgtqbt6hio2u4m843ndd.apps.googleusercontent.com",
+            "client_type": 3
+          }
+        ],
+        "api_key": [
+          {
+            "current_key": "AIzaSyCfjRJPFs5titgFdVDVB37q6GO5pPhX1Lc"
+          },
+          {
+            "current_key": "AIzaSyD2ruyLlgYp4GlVdkbGlLe5Pp7SE875cVY"
+          }
+        ],
+        "services": {
+          "appinvite_service": {
+            "other_platform_oauth_client": [
+              {
+                "client_id": "699619883045-03odqje39aqrcgtqbt6hio2u4m843ndd.apps.googleusercontent.com",
+                "client_type": 3
+              },
+              {
+                "client_id": "699619883045-33a2o9o7rlpj9fi9skltfrr3chfks83k.apps.googleusercontent.com",
+                "client_type": 2,
+                "ios_info": {
+                  "bundle_id": "com.foodies.restaurant.ios"
+                }
+              }
+            ]
+          }
+        }
+      },
+      {
+        "client_info": {
+          "mobilesdk_app_id": "1:699619883045:android:e787fe29a32c7df91d67cc",
+          "android_client_info": {
+            "package_name": "com.justclick.restaurant"
+          }
+        },
+        "oauth_client": [
+          {
+            "client_id": "699619883045-hbaov4knuhg938jq6oaekgps6lfqtln6.apps.googleusercontent.com",
+            "client_type": 1,
+            "android_info": {
+              "package_name": "com.justclick.restaurant",
+              "certificate_hash": "07f72ab5f9e73632ed01f89c254a446b864075d0"
+            }
+          },
+          {
+            "client_id": "699619883045-03odqje39aqrcgtqbt6hio2u4m843ndd.apps.googleusercontent.com",
+            "client_type": 3
+          }
+        ],
+        "api_key": [
+          {
+            "current_key": "AIzaSyCfjRJPFs5titgFdVDVB37q6GO5pPhX1Lc"
+          },
+          {
+            "current_key": "AIzaSyD2ruyLlgYp4GlVdkbGlLe5Pp7SE875cVY"
+          }
+        ],
+        "services": {
+          "appinvite_service": {
+            "other_platform_oauth_client": [
+              {
+                "client_id": "699619883045-03odqje39aqrcgtqbt6hio2u4m843ndd.apps.googleusercontent.com",
+                "client_type": 3
+              },
+              {
+                "client_id": "699619883045-33a2o9o7rlpj9fi9skltfrr3chfks83k.apps.googleusercontent.com",
+                "client_type": 2,
+                "ios_info": {
+                  "bundle_id": "com.foodies.restaurant.ios"
+                }
+              }
+            ]
+          }
         }
       }
-    }
-  ],
-  "configuration_version": "1"
-}
+    ],
+    "configuration_version": "1"
+  }

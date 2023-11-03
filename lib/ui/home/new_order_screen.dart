@@ -32,8 +32,7 @@ class _NewOrderScreenState extends State<NewOrderScreen> {
   bool isLoading = true;
 
   getOrder() {
-    late Stream<User> driverStream =
-        FireStoreUtils().getDriver(MyAppState.currentUser!.userID);
+    late Stream<User> driverStream = FireStoreUtils().getDriver(MyAppState.currentUser!.userID);
     driverStream.listen((event) {
       newOrder!.clear();
       activeOrder!.clear();
@@ -62,18 +61,15 @@ class _NewOrderScreenState extends State<NewOrderScreen> {
             )
           : Column(
               children: [
-                _driverModel!.walletAmount <
-                        double.parse(minimumDepositToRideAccept)
+                _driverModel!.walletAmount < double.parse(minimumDepositToRideAccept)
                     ? Align(
                         alignment: Alignment.topCenter,
                         child: Container(
                           color: Colors.black,
                           child: Padding(
                             padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                                "You have to minimum ${amountShow(amount: minimumDepositToRideAccept.toString())} wallet amount to receiving Order",
-                                style: TextStyle(color: Colors.white),
-                                textAlign: TextAlign.center),
+                            child: Text("You have to minimum ${amountShow(amount: minimumDepositToRideAccept.toString())} wallet amount to receiving Order",
+                                style: TextStyle(color: Colors.white), textAlign: TextAlign.center),
                           ),
                         ),
                       )
@@ -92,11 +88,9 @@ class _NewOrderScreenState extends State<NewOrderScreen> {
                                 selectedTabIndex = value;
                               });
                             },
-                            labelStyle:
-                                const TextStyle(fontWeight: FontWeight.bold),
+                            labelStyle: const TextStyle(fontWeight: FontWeight.bold),
                             labelColor: Color(COLOR_PRIMARY),
-                            unselectedLabelStyle:
-                                const TextStyle(fontWeight: FontWeight.w500),
+                            unselectedLabelStyle: const TextStyle(fontWeight: FontWeight.w500),
                             unselectedLabelColor: Colors.grey,
                             indicatorColor: Color(COLOR_PRIMARY),
                             indicatorWeight: 1,
@@ -123,98 +117,49 @@ class _NewOrderScreenState extends State<NewOrderScreen> {
                                       itemBuilder: (context, index) {
                                         String orderId = newOrder![index];
                                         return FutureBuilder<OrderModel?>(
-                                          future:
-                                              FireStoreUtils.getOrderBuOrderId(
-                                                  orderId),
-                                          builder: (BuildContext context,
-                                              AsyncSnapshot<OrderModel?>
-                                                  snapshot) {
+                                          future: FireStoreUtils.getOrderBuOrderId(orderId),
+                                          builder: (BuildContext context, AsyncSnapshot<OrderModel?> snapshot) {
                                             if (snapshot.hasError) {
-                                              return Text(
-                                                  "Something went wrong");
+                                              return Text("Something went wrong");
                                             }
 
-                                            if (snapshot.connectionState ==
-                                                ConnectionState.done) {
-                                              OrderModel orderModel =
-                                                  snapshot.data!;
+                                            if (snapshot.connectionState == ConnectionState.done) {
+                                              OrderModel orderModel = snapshot.data!;
 
-                                              double distanceInMeters =
-                                                  Geolocator.distanceBetween(
-                                                      orderModel
-                                                          .vendor.latitude,
-                                                      orderModel
-                                                          .vendor.longitude,
-                                                      orderModel
-                                                          .author
-                                                          .shippingAddress
-                                                          .location
-                                                          .latitude,
-                                                      orderModel
-                                                          .author
-                                                          .shippingAddress
-                                                          .location
-                                                          .longitude);
-                                              double kilometer =
-                                                  distanceInMeters / 1000;
+                                              double distanceInMeters = Geolocator.distanceBetween(orderModel.vendor.latitude, orderModel.vendor.longitude,
+                                                  orderModel.author.shippingAddress.location.latitude, orderModel.author.shippingAddress.location.longitude);
+                                              double kilometer = distanceInMeters / 1000;
 
                                               return InkWell(
                                                 onTap: () {
-                                                  push(
-                                                      context,
-                                                      HomeScreen(
-                                                          orderModel:
-                                                              orderModel));
+                                                  push(context, HomeScreen(orderModel: orderModel));
                                                 },
                                                 child: Padding(
-                                                  padding:
-                                                      const EdgeInsets.all(8.0),
+                                                  padding: const EdgeInsets.all(8.0),
                                                   child: Container(
-                                                    padding:
-                                                        EdgeInsets.symmetric(
-                                                            vertical: 16,
-                                                            horizontal: 10),
+                                                    padding: EdgeInsets.symmetric(vertical: 16, horizontal: 10),
                                                     decoration: BoxDecoration(
                                                       color: Color(0xff212121),
-                                                      borderRadius:
-                                                          BorderRadius.all(
-                                                              Radius.circular(
-                                                                  15)),
+                                                      borderRadius: BorderRadius.all(Radius.circular(15)),
                                                     ),
                                                     child: Column(
-                                                      mainAxisSize:
-                                                          MainAxisSize.min,
+                                                      mainAxisSize: MainAxisSize.min,
                                                       // crossAxisAlignment: CrossAxisAlignment.stretch,
                                                       children: [
                                                         SizedBox(height: 5),
                                                         Row(
-                                                          mainAxisAlignment:
-                                                              MainAxisAlignment
-                                                                  .spaceEvenly,
+                                                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                                           children: [
                                                             Expanded(
                                                               child: Text(
-                                                                "Trip Distance"
-                                                                    .tr(),
-                                                                style: TextStyle(
-                                                                    color: Color(
-                                                                        0xffADADAD),
-                                                                    fontFamily:
-                                                                        "Poppinsr",
-                                                                    letterSpacing:
-                                                                        0.5),
+                                                                "Trip Distance".tr(),
+                                                                style: TextStyle(color: Color(0xffADADAD), fontFamily: "Poppinsr", letterSpacing: 0.5),
                                                               ),
                                                             ),
                                                             Text(
                                                               // '0',
                                                               "${kilometer.toStringAsFixed(currencyModel!.decimal)} km",
-                                                              style: TextStyle(
-                                                                  color: Color(
-                                                                      0xffFFFFFF),
-                                                                  fontFamily:
-                                                                      "Poppinsm",
-                                                                  letterSpacing:
-                                                                      0.5),
+                                                              style: TextStyle(color: Color(0xffFFFFFF), fontFamily: "Poppinsm", letterSpacing: 0.5),
                                                             ),
                                                           ],
                                                         ),
@@ -222,102 +167,55 @@ class _NewOrderScreenState extends State<NewOrderScreen> {
                                                           height: 5,
                                                         ),
                                                         Row(
-                                                          mainAxisAlignment:
-                                                              MainAxisAlignment
-                                                                  .spaceEvenly,
+                                                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                                           children: [
                                                             Expanded(
                                                               child: Text(
-                                                                "Delivery charge"
-                                                                    .tr(),
-                                                                style: TextStyle(
-                                                                    color: Color(
-                                                                        0xffADADAD),
-                                                                    fontFamily:
-                                                                        "Poppinsr",
-                                                                    letterSpacing:
-                                                                        0.5),
+                                                                "Delivery charge".tr(),
+                                                                style: TextStyle(color: Color(0xffADADAD), fontFamily: "Poppinsr", letterSpacing: 0.5),
                                                               ),
                                                             ),
                                                             Text(
                                                               // '0',
                                                               "${amountShow(amount: orderModel.deliveryCharge.toString())}",
-                                                              style: TextStyle(
-                                                                  color: Color(
-                                                                      0xffFFFFFF),
-                                                                  fontFamily:
-                                                                      "Poppinsm",
-                                                                  letterSpacing:
-                                                                      0.5),
+                                                              style: TextStyle(color: Color(0xffFFFFFF), fontFamily: "Poppinsm", letterSpacing: 0.5),
                                                             ),
                                                           ],
                                                         ),
                                                         SizedBox(height: 5),
                                                         Card(
-                                                          color:
-                                                              Color(0xffFFFFFF),
+                                                          color: Color(0xffFFFFFF),
                                                           child: Padding(
-                                                            padding:
-                                                                const EdgeInsets
-                                                                    .symmetric(
-                                                                    vertical:
-                                                                        14.0,
-                                                                    horizontal:
-                                                                        10),
+                                                            padding: const EdgeInsets.symmetric(vertical: 14.0, horizontal: 10),
                                                             child: Row(
                                                               children: [
                                                                 Image.asset(
                                                                   'assets/images/location3x.png',
                                                                   height: 55,
                                                                 ),
-                                                                SizedBox(
-                                                                    width: 10),
+                                                                SizedBox(width: 10),
                                                                 Column(
-                                                                  crossAxisAlignment:
-                                                                      CrossAxisAlignment
-                                                                          .start,
+                                                                  crossAxisAlignment: CrossAxisAlignment.start,
                                                                   children: [
                                                                     SizedBox(
-                                                                      width:
-                                                                          270,
-                                                                      child:
-                                                                          Text(
+                                                                      width: 270,
+                                                                      child: Text(
                                                                         "${orderModel.vendor.location} ",
-                                                                        maxLines:
-                                                                            1,
-                                                                        overflow:
-                                                                            TextOverflow.ellipsis,
-                                                                        style: TextStyle(
-                                                                            color: Color(
-                                                                                0xff333333),
-                                                                            fontFamily:
-                                                                                "Poppinsr",
-                                                                            letterSpacing:
-                                                                                0.5),
+                                                                        maxLines: 1,
+                                                                        overflow: TextOverflow.ellipsis,
+                                                                        style: TextStyle(color: Color(0xff333333), fontFamily: "Poppinsr", letterSpacing: 0.5),
                                                                       ),
                                                                     ),
+                                                                    SizedBox(height: 22),
                                                                     SizedBox(
-                                                                        height:
-                                                                            22),
-                                                                    SizedBox(
-                                                                      width:
-                                                                          270,
-                                                                      child:
-                                                                          Text(
+                                                                      width: 270,
+                                                                      child: Text(
                                                                         "${orderModel.address.line1} "
                                                                         "${orderModel.address.line2} "
                                                                         "${orderModel.address.city}",
-                                                                        maxLines:
-                                                                            1,
-                                                                        overflow:
-                                                                            TextOverflow.ellipsis,
-                                                                        style: TextStyle(
-                                                                            color: Color(
-                                                                                0xff333333),
-                                                                            fontFamily:
-                                                                                "Poppinsr",
-                                                                            letterSpacing:
-                                                                                0.5),
+                                                                        maxLines: 1,
+                                                                        overflow: TextOverflow.ellipsis,
+                                                                        style: TextStyle(color: Color(0xff333333), fontFamily: "Poppinsr", letterSpacing: 0.5),
                                                                       ),
                                                                     ),
                                                                   ],
@@ -330,128 +228,59 @@ class _NewOrderScreenState extends State<NewOrderScreen> {
                                                           height: 10,
                                                         ),
                                                         Row(
-                                                          mainAxisAlignment:
-                                                              MainAxisAlignment
-                                                                  .spaceAround,
+                                                          mainAxisAlignment: MainAxisAlignment.spaceAround,
                                                           children: [
                                                             SizedBox(
-                                                              height: MediaQuery.of(
-                                                                          context)
-                                                                      .size
-                                                                      .height /
-                                                                  20,
-                                                              width: MediaQuery.of(
-                                                                          context)
-                                                                      .size
-                                                                      .width /
-                                                                  2.5,
-                                                              child:
-                                                                  ElevatedButton(
-                                                                style: ElevatedButton
-                                                                    .styleFrom(
-                                                                  padding: const EdgeInsets
-                                                                      .symmetric(
-                                                                      vertical:
-                                                                          6,
-                                                                      horizontal:
-                                                                          12),
-                                                                  backgroundColor:
-                                                                      Color(
-                                                                          COLOR_PRIMARY),
-                                                                  shape:
-                                                                      RoundedRectangleBorder(
-                                                                    borderRadius:
-                                                                        BorderRadius
-                                                                            .all(
-                                                                      Radius
-                                                                          .circular(
-                                                                              5),
+                                                              height: MediaQuery.of(context).size.height / 20,
+                                                              width: MediaQuery.of(context).size.width / 2.5,
+                                                              child: ElevatedButton(
+                                                                style: ElevatedButton.styleFrom(
+                                                                  padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 12),
+                                                                  backgroundColor: Color(COLOR_PRIMARY),
+                                                                  shape: RoundedRectangleBorder(
+                                                                    borderRadius: BorderRadius.all(
+                                                                      Radius.circular(5),
                                                                     ),
                                                                   ),
                                                                 ),
                                                                 child: Text(
                                                                   'Reject',
-                                                                  style: TextStyle(
-                                                                      color: Color(
-                                                                          0xffFFFFFF),
-                                                                      fontFamily:
-                                                                          "Poppinsm",
-                                                                      letterSpacing:
-                                                                          0.5),
+                                                                  style: TextStyle(color: Color(0xffFFFFFF), fontFamily: "Poppinsm", letterSpacing: 0.5),
                                                                 ),
-                                                                onPressed:
-                                                                    () async {
-                                                                  showProgress(
-                                                                      context,
-                                                                      'Rejecting order...'
-                                                                          .tr(),
-                                                                      false);
+                                                                onPressed: () async {
+                                                                  showProgress(context, 'Rejecting order...'.tr(), false);
                                                                   try {
-                                                                    await rejectOrder(
-                                                                        orderModel);
+                                                                    await rejectOrder(orderModel);
                                                                     hideProgress();
-                                                                    setState(
-                                                                        () {});
+                                                                    setState(() {});
                                                                   } catch (e) {
                                                                     hideProgress();
-                                                                    print(
-                                                                        'HomeScreenState.showDriverBottomSheet $e');
+                                                                    print('HomeScreenState.showDriverBottomSheet $e');
                                                                   }
                                                                 },
                                                               ),
                                                             ),
                                                             SizedBox(
-                                                              height: MediaQuery.of(
-                                                                          context)
-                                                                      .size
-                                                                      .height /
-                                                                  20,
-                                                              width: MediaQuery.of(
-                                                                          context)
-                                                                      .size
-                                                                      .width /
-                                                                  2.5,
-                                                              child:
-                                                                  ElevatedButton(
-                                                                      style: ElevatedButton
-                                                                          .styleFrom(
-                                                                        padding: const EdgeInsets
-                                                                            .symmetric(
-                                                                            vertical:
-                                                                                6,
-                                                                            horizontal:
-                                                                                12),
-                                                                        backgroundColor:
-                                                                            Color(COLOR_PRIMARY),
-                                                                        shape:
-                                                                            RoundedRectangleBorder(
-                                                                          borderRadius:
-                                                                              BorderRadius.all(
-                                                                            Radius.circular(5),
-                                                                          ),
-                                                                        ),
+                                                              height: MediaQuery.of(context).size.height / 20,
+                                                              width: MediaQuery.of(context).size.width / 2.5,
+                                                              child: ElevatedButton(
+                                                                  style: ElevatedButton.styleFrom(
+                                                                    padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 12),
+                                                                    backgroundColor: Color(COLOR_PRIMARY),
+                                                                    shape: RoundedRectangleBorder(
+                                                                      borderRadius: BorderRadius.all(
+                                                                        Radius.circular(5),
                                                                       ),
-                                                                      child:
-                                                                          Text(
-                                                                        'Accept'
-                                                                            .tr(),
-                                                                        style: TextStyle(
-                                                                            color: Color(
-                                                                                0xffFFFFFF),
-                                                                            fontFamily:
-                                                                                "Poppinsm",
-                                                                            letterSpacing:
-                                                                                0.5),
-                                                                      ),
-                                                                      onPressed:
-                                                                          () async {
-                                                                        showProgress(
-                                                                            context,
-                                                                            'Accepting order...'.tr(),
-                                                                            false);
-                                                                        await acceptOrder(
-                                                                            orderModel);
-                                                                      }),
+                                                                    ),
+                                                                  ),
+                                                                  child: Text(
+                                                                    'Accept'.tr(),
+                                                                    style: TextStyle(color: Color(0xffFFFFFF), fontFamily: "Poppinsm", letterSpacing: 0.5),
+                                                                  ),
+                                                                  onPressed: () async {
+                                                                    showProgress(context, 'Accepting order...'.tr(), false);
+                                                                    await acceptOrder(orderModel);
+                                                                  }),
                                                             ),
                                                           ],
                                                         ),
@@ -463,8 +292,7 @@ class _NewOrderScreenState extends State<NewOrderScreen> {
                                             }
 
                                             return Center(
-                                              child:
-                                                  CircularProgressIndicator(),
+                                              child: CircularProgressIndicator(),
                                             );
                                           },
                                         );
@@ -480,100 +308,51 @@ class _NewOrderScreenState extends State<NewOrderScreen> {
                                       itemBuilder: (context, index) {
                                         String orderId = activeOrder![index];
                                         return FutureBuilder<OrderModel?>(
-                                          future:
-                                              FireStoreUtils.getOrderBuOrderId(
-                                                  orderId),
-                                          builder: (BuildContext context,
-                                              AsyncSnapshot<OrderModel?>
-                                                  snapshot) {
+                                          future: FireStoreUtils.getOrderBuOrderId(orderId),
+                                          builder: (BuildContext context, AsyncSnapshot<OrderModel?> snapshot) {
                                             if (snapshot.hasError) {
-                                              return Text(
-                                                  "Something went wrong");
+                                              return Text("Something went wrong");
                                             }
 
-                                            if (snapshot.connectionState ==
-                                                ConnectionState.done) {
-                                              OrderModel orderModel =
-                                                  snapshot.data!;
+                                            if (snapshot.connectionState == ConnectionState.done) {
+                                              OrderModel orderModel = snapshot.data!;
                                               print("ACTIVEORDER");
                                               print(orderModel.id);
 
-                                              double distanceInMeters =
-                                                  Geolocator.distanceBetween(
-                                                      orderModel
-                                                          .vendor.latitude,
-                                                      orderModel
-                                                          .vendor.longitude,
-                                                      orderModel
-                                                          .author
-                                                          .shippingAddress
-                                                          .location
-                                                          .latitude,
-                                                      orderModel
-                                                          .author
-                                                          .shippingAddress
-                                                          .location
-                                                          .longitude);
-                                              double kilometer =
-                                                  distanceInMeters / 1000;
+                                              double distanceInMeters = Geolocator.distanceBetween(orderModel.vendor.latitude, orderModel.vendor.longitude,
+                                                  orderModel.author.shippingAddress.location.latitude, orderModel.author.shippingAddress.location.longitude);
+                                              double kilometer = distanceInMeters / 1000;
 
                                               return InkWell(
                                                 onTap: () {
-                                                  push(
-                                                      context,
-                                                      HomeScreen(
-                                                          orderModel:
-                                                              orderModel));
+                                                  push(context, HomeScreen(orderModel: orderModel));
                                                 },
                                                 child: Padding(
-                                                  padding:
-                                                      const EdgeInsets.all(8.0),
+                                                  padding: const EdgeInsets.all(8.0),
                                                   child: Container(
-                                                    padding:
-                                                        EdgeInsets.symmetric(
-                                                            vertical: 16,
-                                                            horizontal: 10),
+                                                    padding: EdgeInsets.symmetric(vertical: 16, horizontal: 10),
                                                     decoration: BoxDecoration(
                                                       color: Color(0xff212121),
-                                                      borderRadius:
-                                                          BorderRadius.all(
-                                                              Radius.circular(
-                                                                  15)),
+                                                      borderRadius: BorderRadius.all(Radius.circular(15)),
                                                     ),
                                                     child: Column(
-                                                      mainAxisSize:
-                                                          MainAxisSize.min,
+                                                      mainAxisSize: MainAxisSize.min,
                                                       // crossAxisAlignment: CrossAxisAlignment.stretch,
                                                       children: [
                                                         SizedBox(height: 5),
                                                         Row(
-                                                          mainAxisAlignment:
-                                                              MainAxisAlignment
-                                                                  .spaceEvenly,
+                                                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                                           children: [
                                                             Expanded(
                                                               child: Text(
-                                                                "Trip Distance"
-                                                                    .tr(),
-                                                                style: TextStyle(
-                                                                    color: Color(
-                                                                        0xffADADAD),
-                                                                    fontFamily:
-                                                                        "Poppinsr",
-                                                                    letterSpacing:
-                                                                        0.5),
+                                                                "Trip Distance".tr(),
+                                                                style: TextStyle(color: Color(0xffADADAD), fontFamily: "Poppinsr", letterSpacing: 0.5),
                                                               ),
                                                             ),
                                                             Text(
                                                               // '0',
                                                               "${kilometer.toStringAsFixed(currencyModel!.decimal)} km",
-                                                              style: TextStyle(
-                                                                  color: Color(
-                                                                      0xffFFFFFF),
-                                                                  fontFamily:
-                                                                      "Poppinsm",
-                                                                  letterSpacing:
-                                                                      0.5),
+                                                              style: TextStyle(color: Color(0xffFFFFFF), fontFamily: "Poppinsm", letterSpacing: 0.5),
                                                             ),
                                                           ],
                                                         ),
@@ -581,102 +360,55 @@ class _NewOrderScreenState extends State<NewOrderScreen> {
                                                           height: 5,
                                                         ),
                                                         Row(
-                                                          mainAxisAlignment:
-                                                              MainAxisAlignment
-                                                                  .spaceEvenly,
+                                                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                                           children: [
                                                             Expanded(
                                                               child: Text(
-                                                                "Delivery charge"
-                                                                    .tr(),
-                                                                style: TextStyle(
-                                                                    color: Color(
-                                                                        0xffADADAD),
-                                                                    fontFamily:
-                                                                        "Poppinsr",
-                                                                    letterSpacing:
-                                                                        0.5),
+                                                                "Delivery charge".tr(),
+                                                                style: TextStyle(color: Color(0xffADADAD), fontFamily: "Poppinsr", letterSpacing: 0.5),
                                                               ),
                                                             ),
                                                             Text(
                                                               // '0',
                                                               "${amountShow(amount: orderModel.deliveryCharge.toString())}",
-                                                              style: TextStyle(
-                                                                  color: Color(
-                                                                      0xffFFFFFF),
-                                                                  fontFamily:
-                                                                      "Poppinsm",
-                                                                  letterSpacing:
-                                                                      0.5),
+                                                              style: TextStyle(color: Color(0xffFFFFFF), fontFamily: "Poppinsm", letterSpacing: 0.5),
                                                             ),
                                                           ],
                                                         ),
                                                         SizedBox(height: 5),
                                                         Card(
-                                                          color:
-                                                              Color(0xffFFFFFF),
+                                                          color: Color(0xffFFFFFF),
                                                           child: Padding(
-                                                            padding:
-                                                                const EdgeInsets
-                                                                    .symmetric(
-                                                                    vertical:
-                                                                        14.0,
-                                                                    horizontal:
-                                                                        10),
+                                                            padding: const EdgeInsets.symmetric(vertical: 14.0, horizontal: 10),
                                                             child: Row(
                                                               children: [
                                                                 Image.asset(
                                                                   'assets/images/location3x.png',
                                                                   height: 55,
                                                                 ),
-                                                                SizedBox(
-                                                                    width: 10),
+                                                                SizedBox(width: 10),
                                                                 Column(
-                                                                  crossAxisAlignment:
-                                                                      CrossAxisAlignment
-                                                                          .start,
+                                                                  crossAxisAlignment: CrossAxisAlignment.start,
                                                                   children: [
                                                                     SizedBox(
-                                                                      width:
-                                                                          270,
-                                                                      child:
-                                                                          Text(
+                                                                      width: 270,
+                                                                      child: Text(
                                                                         "${orderModel.vendor.location} ",
-                                                                        maxLines:
-                                                                            1,
-                                                                        overflow:
-                                                                            TextOverflow.ellipsis,
-                                                                        style: TextStyle(
-                                                                            color: Color(
-                                                                                0xff333333),
-                                                                            fontFamily:
-                                                                                "Poppinsr",
-                                                                            letterSpacing:
-                                                                                0.5),
+                                                                        maxLines: 1,
+                                                                        overflow: TextOverflow.ellipsis,
+                                                                        style: TextStyle(color: Color(0xff333333), fontFamily: "Poppinsr", letterSpacing: 0.5),
                                                                       ),
                                                                     ),
+                                                                    SizedBox(height: 22),
                                                                     SizedBox(
-                                                                        height:
-                                                                            22),
-                                                                    SizedBox(
-                                                                      width:
-                                                                          270,
-                                                                      child:
-                                                                          Text(
+                                                                      width: 270,
+                                                                      child: Text(
                                                                         "${orderModel.address.line1} "
                                                                         "${orderModel.address.line2} "
                                                                         "${orderModel.address.city}",
-                                                                        maxLines:
-                                                                            1,
-                                                                        overflow:
-                                                                            TextOverflow.ellipsis,
-                                                                        style: TextStyle(
-                                                                            color: Color(
-                                                                                0xff333333),
-                                                                            fontFamily:
-                                                                                "Poppinsr",
-                                                                            letterSpacing:
-                                                                                0.5),
+                                                                        maxLines: 1,
+                                                                        overflow: TextOverflow.ellipsis,
+                                                                        style: TextStyle(color: Color(0xff333333), fontFamily: "Poppinsr", letterSpacing: 0.5),
                                                                       ),
                                                                     ),
                                                                   ],
@@ -693,8 +425,7 @@ class _NewOrderScreenState extends State<NewOrderScreen> {
                                             }
 
                                             return Center(
-                                              child:
-                                                  CircularProgressIndicator(),
+                                              child: CircularProgressIndicator(),
                                             );
                                           },
                                         );
@@ -740,9 +471,7 @@ class _NewOrderScreenState extends State<NewOrderScreen> {
 
     push(context, HomeScreen(orderModel: orderModel));
 
-    await FireStoreUtils.sendFcmMessage(
-        driverAccepted, orderModel.author.fcmToken);
-    await FireStoreUtils.sendFcmMessage(
-        driverAccepted, orderModel.vendor.fcmToken);
+    await FireStoreUtils.sendFcmMessage(driverAccepted, orderModel.author.fcmToken);
+    await FireStoreUtils.sendFcmMessage(driverAccepted, orderModel.vendor.fcmToken);
   }
 }

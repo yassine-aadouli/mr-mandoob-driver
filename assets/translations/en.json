@@ -235,5 +235,8 @@
   "Date": "Date",
   "Note": "Note",
   "Admin Note": "Admin Note",
-  "Status": "Status"
+  "Status": "Status",
+  "Inbox": "Inbox",
+  "Terms and Condition": "Terms and Condition",
+  "Privacy policy": "Privacy policy"
 }
