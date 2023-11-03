@@ -246,29 +246,31 @@ class _ContainerScreen extends State<ContainerScreen> {
                               user.email,
                               style: TextStyle(color: Colors.white),
                             ),
-                            SwitchListTile(
-                              visualDensity:
-                                  VisualDensity(horizontal: 0, vertical: -4),
-                              contentPadding: EdgeInsets.zero,
-                              title: Text(
-                                "Online",
-                                style: TextStyle(color: Colors.white),
+                            Expanded(
+                              child: SwitchListTile(
+                                visualDensity:
+                                    VisualDensity(horizontal: 0, vertical: -4),
+                                contentPadding: EdgeInsets.zero,
+                                title: Text(
+                                  'Online'.tr(),
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                                // thumb color (round icon)
+                                value: user.isActive,
+                                onChanged: (value) {
+                                  setState(() {
+                                    user.isActive = value;
+                                  });
+                                  user.inProgressOrderID =
+                                      MyAppState.currentUser!.inProgressOrderID;
+                                  user.orderRequestData =
+                                      MyAppState.currentUser!.orderRequestData;
+                                  if (user.isActive == true) {
+                                    updateCurrentLocation();
+                                  }
+                                  FireStoreUtils.updateCurrentUser(user);
+                                },
                               ),
-                              // thumb color (round icon)
-                              value: user.isActive,
-                              onChanged: (value) {
-                                setState(() {
-                                  user.isActive = value;
-                                });
-                                user.inProgressOrderID =
-                                    MyAppState.currentUser!.inProgressOrderID;
-                                user.orderRequestData =
-                                    MyAppState.currentUser!.orderRequestData;
-                                if (user.isActive == true) {
-                                  updateCurrentLocation();
-                                }
-                                FireStoreUtils.updateCurrentUser(user);
-                              },
                             ),
                           ],
                         ),
